@@ -1,6 +1,22 @@
 import { View, Image, Text, Button, StyleSheet } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import RootStackParamList from './RootStackParamList';
+import { useState, useEffect } from 'react';
 
-export default function GeneralScreen() {
+type GeneralScreenNavigationProp = StackNavigationProp<RootStackParamList, 'General'>;
+type Props = {
+  navigation: GeneralScreenNavigationProp,
+};
+
+const isFinished : boolean = false;
+
+const GeneralScreen: React.FC<Props> = ({ navigation }) => {
+
+    const runQuiz = () => {
+      navigation.navigate('Quiz');
+    }
+
     return(
       <View style={{flex: 1}}>
           <View style={{backgroundColor: 'red', flex: 1}}>
@@ -13,7 +29,7 @@ export default function GeneralScreen() {
                   <Text style={{width: '100%', textAlign: 'center', color: '#fff', fontSize: 16, marginBottom: 10}}>Quiz składa się z 10 pytań, które przetestują Twoją wiedzę na temat Hogwartu, bohaterów, zaklęć i przygód Harry'ego i jego przyjaciół.</Text>
                   <Text style={{width: '100%', textAlign: 'center', color: '#fff', fontSize: 16, marginBottom: 10}}>Czy potrafisz odpowiedzieć na wszystkie pytania i zdobyć tytuł Mistrza Wiedzy Harry'ego Pottera?</Text>
                   <Text style={{width: '100%', textAlign: 'center', color: '#fff', fontSize: 26, marginBottom: 10}}>Czas to sprawdzić!</Text>
-                  <Button title="Kliknij, aby rozpocząć test!" />
+                  <Button onPress={runQuiz} title="Kliknij, aby rozpocząć test!" />
               </View>
           </View>
       </View>
@@ -50,3 +66,6 @@ const styles = StyleSheet.create({
     }
     // Dodaj resztę stylów
   });
+
+
+  export default GeneralScreen;

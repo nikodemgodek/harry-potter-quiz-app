@@ -6,17 +6,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import GeneralScreen from './screens/GeneralScreen';
 import QuizScreen from './screens/QuizScreen';
+import FinishScreen from './screens/FinishScreen';
 
 export default function App() {
 
   const Stack = createStackNavigator();
 
-  const isStarted :boolean = true;
-
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {isStarted ? <Stack.Screen name="Quiz" component={QuizScreen} options={{headerShown: false}}/> : <Stack.Screen name="General" component={GeneralScreen}  options={{headerShown: false}}/>}
+      <Stack.Navigator initialRouteName='General'>
+        <Stack.Screen name="Quiz" component={QuizScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="General" component={GeneralScreen}  options={{headerShown: false}}/>
+        <Stack.Screen name="Finish" component={FinishScreen} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
